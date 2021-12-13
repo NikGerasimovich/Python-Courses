@@ -13,29 +13,35 @@ while True:
 
 
 def my_split(inp_string, separator, max_split):
+    #Функция которая заменяет метод .split для любого сепаратора и значений max_split 0 либо 1
+
     dict_remove = {" ": "", ",": "", ":": "", "-": "", "'": "", '"': ""}
 
-    if separator != "" and separator == 0:
+    if separator != "" and max_split == 0:
         for i in inp_string:
             for j in dict_remove:
                 if i == j and j == separator:
                     inp_string = inp_string.replace(i, "")
 
-    elif separator !="" and max_split != 0:
+    elif separator != "" and max_split != 0:
         for i in inp_string:
             for j in dict_remove:
                 if i == j and j == separator:
                     sep = inp_string.find(separator)
-                    inp_string = "".join(inp_string[:sep])
+                    sep_string = ''.join(inp_string[:sep])
 
-                    #Не работает сепаратор
     else:
         for i in inp_string:
             inp_string = inp_string.replace(" ", '')
 
+    out_string = list()
+    out_string.append(sep_string)
+    out_string.append(inp_string[(sep+1):])
 
-    inp_string = list(inp_string)
+    return out_string
 
-    return inp_string
 
 print(my_split(inp_string, separator, max_split))
+
+# Програма выполняет работы метода .split но только для значений max_split = 0 либо 1
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Надо доработать !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
