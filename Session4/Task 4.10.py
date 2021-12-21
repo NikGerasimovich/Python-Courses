@@ -2,12 +2,12 @@
 # number and the value is the square of that number. print(generate_squares(5)) -> {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 
 
-inp_lst = [int(i) for i in input("Введите значения через пробел").split()]
+inp_range = int(input("Введите значения через пробел: "))
 
 
-def square(inp_lst):
+def square(inp_range):
     # Функция возводит в квадрат ключи и формирует новый словарь из клч и знач
-
+    inp_lst = list(range(1, inp_range+1))
     inp_dict = dict.fromkeys(inp_lst)
     out_lst = list()
 
@@ -19,7 +19,7 @@ def square(inp_lst):
     return out_dict
 
 
-print(square(inp_lst))
+print(square(inp_range))
 
 # Функция возводит в квадрат ключи и затем записывает их в другой список
 # С помощью функции zip формируется выходной словарь из ключей входных данных и значений - квадратов этих данных
