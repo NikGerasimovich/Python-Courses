@@ -8,10 +8,7 @@ def decorator(func):
     def wrapper(a, b):
         first_answ.append(func(a, b))
         for i in first_answ:
-            if len(first_answ) == 1:
-                return print(i)
-            else:
-                return print(i)
+            return print(i)
         return first_answ
 
     return wrapper
