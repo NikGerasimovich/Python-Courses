@@ -13,11 +13,11 @@ def enclosing_func():
 
     def inner_func():
         a = "I am local variable!"
-        print(a)
+        print(a) #Вывод локальной переменной
 
     inner_func()  # Вызов ф-ции inner для вывода локальной переменной
-    print(a)
+    print(a)  # Вывож enclosing переменной
 
+print(a) #Вывод global variables потому что он стоит до назначения enclosing func
+enclosing_func()  # Вызов ф-ции enclosing для вывода нелокальной области(охватывающей) переменных
 
-enclosing_func()  # Вызов ф-ции enclosing для вывода нелокальной области(охватывающей) переменной
-print(a)  # Вызов глобальной переменной
