@@ -58,18 +58,43 @@ class MonostateSingelton:
     def __init__(self):
         self.x = 1
         self.__dict__ = self._shared_state  # __dict__ исп для хранения состояния каждого обьектакласса
-        pass
+        pass    #Оператор заглушка
 
 
 a = MonostateSingelton()
 b = MonostateSingelton()
 a.x = 4
-print("Реализация моностатического Singelton \n")
+print("\nРеализация моностатического Singelton ")
 print("Borg Object 'a': ", a)
 print("Borg Object 'b': ", b)
 print("Object State 'a':", a.__dict__)
 print("Object State 'b':", b.__dict__)
 
+
 # Реализация моностатического Singelton показывает что всё обьекты имеют одно и тоже состояние. В данном случае
 # экземпляры разные но при изменении переменной x в экземпляре a она также изменится и в экземпляре b,
 # но эти обьекты(a и b) при этом разные
+# Monostate является вариацией класса Singelton!
+
+
+class MetaClass(type):
+    def __call__(cls, *args, **kwargs): # Метод вызывается когда необходимо создать обьект для уже существующего класса
+        print("\nПример реализации Метаклассов")
+        print("My arguments", args[0], ",", args[1])
+        print("Let's summary our arguments", sum(args))
+        return type.__call__(cls, *args, **kwargs)
+
+
+class MtCls(metaclass=MetaClass):
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+
+tmp = MtCls(3, 5)
+tmp = MtCls(4, 12)
+tmp1 = MtCls(3, 5)
+
+# Метаклассы - это классы, экземпляры которых явл классами. В данном примере у класса MetaClass предопределяется
+# поведение с помощью класса MtCls (по сути MtCls является экземпляром класса MetaClass, но так же и классом)
