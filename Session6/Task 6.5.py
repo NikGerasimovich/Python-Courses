@@ -31,7 +31,7 @@ class DefInstSingelton:
         else:
             print("Instance already created:", self.getInstance())
 
-    @classmethod        # Метод класса имеющий доступ ко всем атрибутом класса через который он был вызван
+    @classmethod  # Метод класса имеющий доступ ко всем атрибутом класса через который он был вызван
     def getInstance(cls):
         if not cls._instance:
             cls._instance = DefInstSingelton()
@@ -44,6 +44,32 @@ v1 = DefInstSingelton()
 v1.getInstance()
 print("\nОтложенный экзмепляр Singelton \n", p1, "\n", v1, "\n", p1 is v1)
 
+
 # Отложенное создание экземпляра класса нужен для создание обьекта только тогда, когда он действительно нужен. При
 # вызове класса DefInstSingelton() вызывается метод _init_() , но сам обьект создаться только при использование
 # метода DefInstSingelton.getInstance()
+
+
+class MonostateSingelton:
+    """Реализация моностатического Singelton"""
+
+    _shared_state = {"1": "2"}
+
+    def __init__(self):
+        self.x = 1
+        self.__dict__ = self._shared_state  # __dict__ исп для хранения состояния каждого обьектакласса
+        pass
+
+
+a = MonostateSingelton()
+b = MonostateSingelton()
+a.x = 4
+print("Реализация моностатического Singelton \n")
+print("Borg Object 'a': ", a)
+print("Borg Object 'b': ", b)
+print("Object State 'a':", a.__dict__)
+print("Object State 'b':", b.__dict__)
+
+# Реализация моностатического Singelton показывает что всё обьекты имеют одно и тоже состояние. В данном случае
+# экземпляры разные но при изменении переменной x в экземпляре a она также изменится и в экземпляре b,
+# но эти обьекты(a и b) при этом разные
